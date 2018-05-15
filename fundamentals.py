@@ -34,9 +34,11 @@ for l in stocklist:
     
     browser.get(l[1])
     f = browser.find_element_by_link_text('FINANCIALS')
+    # clicking buttons when an ad is blocking it or page keeps loading indefinitely
     f.send_keys(u'\ue007')
     f = browser.find_element_by_link_text('Ratios')
     while f != '':
+        # clicking buttons when an ad is blocking it or page keeps loading indefinitely
         browser.execute_script('arguments[0].click();', f)
         # locate the table containing the ratios by xpath
         r = browser.find_elements_by_xpath('//table[@class="table4"]')
