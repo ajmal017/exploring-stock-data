@@ -1,3 +1,5 @@
+import pandas as pd
+import datetime
 from pandas_datareader import data as pdr
 
 nifty500 = pd.read_csv('ind_nifty500list.csv')
