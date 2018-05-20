@@ -32,7 +32,7 @@ for sym in symbols:
         sym = sym.replace('&', '')
         data = pdr.DataReader('NSE/'+sym, 'quandl',
                               start=datetime.datetime(year-1, month, 1), 
-                              end=datetime.datetime(year, month, 31))
+                              end=datetime.datetime(year, month+1, 1) - pd.Timedelta(1, unit='d'))
         data.index.name = 'Date'
         data.reset_index(inplace=True)
         data['symbol'] = sym
