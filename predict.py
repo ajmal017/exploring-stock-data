@@ -66,8 +66,11 @@ ratios = ratios.merge(temp, on=['symbol', 'date'])
 del temp
 
 ratios.sort_values(['symbol', 'date'], inplace=True)
-ratios['eps_growth'] = 100*ratios.groupby('symbol')['adj_eps'].pct_change(1).values
+#ratios['eps_growth'] = 100*ratios.groupby('symbol')['adj_eps'].pct_change(1).values
+ratios['eps_last'] = ratios.groupby('symbol')['adj_eps'].shift(1)
+ratios['eps_growth'] = (ratios['adj_eps'] - ratios['eps_last'])/abs(ratios['eps_last'])
 
+ratios.drop('eps_last', axis=1, inplace=True)
 prices.drop(['num_split', 'split_factor'], axis=1, inplace=True)
 
 # creating variables for analysis
