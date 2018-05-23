@@ -110,7 +110,7 @@ X = master_data.drop(['symbol', 'Symbol',
                        'earnings_per_share', 'bookvalue',
                        'adj_eps', 'adj_bookvalue',
                        'Industry'], axis=1)
-X['target'] = master_data['returns'] > master_data['benchmark_returns'] + 10
+X['target'] = master_data['returns'] > master_data['benchmark_returns']
 X['target'] = X['target'].apply(int)
 #X['Industry'] = X['Industry'].map(X.groupby('Industry')['target'].mean().to_dict())
 #X['year'] = X['year'].map(X.groupby('year')['target'].mean().to_dict())
